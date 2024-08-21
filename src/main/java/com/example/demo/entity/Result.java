@@ -14,15 +14,12 @@ public class Result {
     @JsonIgnore
     private Long id;
 
-    @ManyToOne
+   
     @JoinColumn(name = "student_id")
-    @JsonIgnore
-    private Student student;
+    private Long student;
 
-    @ManyToOne
     @JoinColumn(name = "test_id")
-    @JsonIgnore
-    private Test test;
+    private Long test;
 
     private int score;
 

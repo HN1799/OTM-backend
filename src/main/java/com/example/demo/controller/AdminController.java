@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.AdminDto;
 import com.example.demo.dto.TestDTO;
+import com.example.demo.entity.Admin;
 import com.example.demo.entity.Result;
 import com.example.demo.entity.Student;
 import com.example.demo.entity.Test;
 import com.example.demo.entity.TestAssignment;
+import com.example.demo.repository.AdminRepository;
 import com.example.demo.service.StudentService;
 import com.example.demo.service.TestAssignmentService;
 import com.example.demo.service.TestService;
+import com.example.demo.service.impl.AdminService;
 import com.example.demo.util.HelperUtil;
 
 @RestController
@@ -88,5 +92,18 @@ public class AdminController {
     	List<Student> allStudent=  studentService.getAllStudent();
     	return ResponseEntity.ok(allStudent);
     }
+    
+    
+    @Autowired
+    private AdminService adminService;
+    @PostMapping("/create")
+    public Admin createAdmin(@RequestBody AdminDto admin) {
+        // You can add any additional business logic here (e.g., password encryption)
+    	
+    	Admin adminSaved = helperUtil.mapAdminDtoToAdmin(admin);
+    	Admin save = adminService.createAdmin(adminSaved);
+        return save;
+    }
+
     
 }

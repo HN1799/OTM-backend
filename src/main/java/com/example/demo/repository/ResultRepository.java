@@ -8,5 +8,5 @@ import com.example.demo.entity.Result;
 import com.example.demo.entity.Student;
 
 public interface ResultRepository extends JpaRepository<Result, Long> {
-	List<Result> findByStudent(Student student);
+	List<Result> findByStudent(Long student);
 }

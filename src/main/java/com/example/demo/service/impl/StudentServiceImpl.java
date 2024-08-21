@@ -47,8 +47,8 @@ public class StudentServiceImpl implements StudentService {
         int score = calculateScore(mapTestToTestDto , answers);
 
         Result result = new Result();
-//        result.setStudent(student);
-//        result.setTest(test);
+        result.setStudent(Long.valueOf( student.getRollNumber()));
+        result.setTest(test.getId());
         result.setScore(score);
 
         return resultRepository.save(result);
@@ -56,12 +56,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Result> getResultsByStudent(Student student) {
-        return resultRepository.findByStudent(student);
+    	
+        return resultRepository.findByStudent(Long.valueOf(student.getRollNumber()));
     }
 
     @Override
     public double getAverageScore(Student student) {
-        List<Result> results = resultRepository.findByStudent(student);
+        List<Result> results = resultRepository.findByStudent(Long.valueOf(student.getRollNumber()));
         return results.stream().mapToInt(Result::getScore).average().orElse(0);
     }
 

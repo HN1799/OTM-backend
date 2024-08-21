@@ -14,9 +14,10 @@ public class Student {
     private Long id;
     private String name;
     private String rollNumber;
+    private String password;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Result> results;
+//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+//    private List<Result> results;
 
     // Getters and setters
 }
